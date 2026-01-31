@@ -1,17 +1,13 @@
 import { MakingCharge } from '@/types/goldRate';
 
-const DEFAULT_MAKING_CHARGES: MakingCharge[] = [
-  { name: 'TURKISH', above: 4.5, below: 3.8 },
-  { name: 'SAUDI', above: 4.8, below: 4 },
-  { name: 'SINGAPORE', above: 3.5, below: 3 },
-  { name: 'OMANI', above: 3.5, below: 3 },
-  { name: 'EMIRATI', above: 3.8, below: 2.8 },
-  { name: 'INDIAN', above: 4, below: 3.5 },
-  { name: 'BAHRAINI', above: 4, below: 3.5 },
-  { name: 'KHWATI', above: 4, below: 3.5 },
-];
+interface MakingChargesProps {
+  charges: MakingCharge[];
+  show: boolean;
+}
 
-export function MakingCharges() {
+export function MakingCharges({ charges, show }: MakingChargesProps) {
+  if (!show) return null;
+
   return (
     <div className="mt-6">
       <div className="text-center text-muted-foreground text-sm tracking-wider mb-4">
@@ -19,8 +15,8 @@ export function MakingCharges() {
       </div>
       
       <div className="grid grid-cols-4 gap-3">
-        {DEFAULT_MAKING_CHARGES.map((charge) => (
-          <div key={charge.name} className="making-charge-card">
+        {charges.map((charge) => (
+          <div key={charge.id} className="making-charge-card">
             <div className="text-muted-foreground text-xs font-medium mb-1 uppercase">
               {charge.name}
             </div>

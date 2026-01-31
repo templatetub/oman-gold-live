@@ -8,7 +8,14 @@ import { AdminPanel } from '@/components/AdminPanel';
 import { useGoldPrices } from '@/hooks/useGoldPrices';
 
 const Index = () => {
-  const { priceData, adminSettings, setAdminSettings, trend } = useGoldPrices();
+  const { 
+    priceData, 
+    adminSettings, 
+    setAdminSettings, 
+    trend,
+    testApiConnection,
+    apiTestResult,
+  } = useGoldPrices();
 
   const karatRates = [
     { karat: '24 Karat', price: priceData.perGram24k },
@@ -59,12 +66,17 @@ const Index = () => {
         </div>
 
         {/* Making Charges */}
-        <MakingCharges />
+        <MakingCharges 
+          charges={adminSettings.makingCharges}
+          show={adminSettings.showMakingCharges}
+        />
 
         {/* Admin Panel */}
         <AdminPanel 
           settings={adminSettings}
           onSettingsChange={setAdminSettings}
+          onTestApi={testApiConnection}
+          apiTestResult={apiTestResult}
         />
       </main>
     </div>

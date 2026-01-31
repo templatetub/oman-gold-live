@@ -1,4 +1,10 @@
 export interface AdminSettings {
+  // API Settings
+  demoMode: boolean;
+  apiKey: string;
+  refreshInterval: number;
+  
+  // Prices Settings
   manualOverride: boolean;
   enablePremiums: boolean;
   usdOverride: number;
@@ -10,9 +16,18 @@ export interface AdminSettings {
   premium22k: number;
   premium21k: number;
   premium18k: number;
+  
+  // Charges Settings
+  showMakingCharges: boolean;
+  makingCharges: MakingCharge[];
+  
+  // Security Settings
+  theme: 'light' | 'dark';
+  adminPin: string;
 }
 
 export interface MakingCharge {
+  id: string;
   name: string;
   above: number;
   below: number;

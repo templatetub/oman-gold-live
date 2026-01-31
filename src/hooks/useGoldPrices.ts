@@ -1,7 +1,24 @@
 import { useState, useEffect, useCallback } from 'react';
-import { AdminSettings, PriceData, TrendData } from '@/types/goldRate';
+import { AdminSettings, PriceData, TrendData, MakingCharge } from '@/types/goldRate';
+
+const DEFAULT_MAKING_CHARGES: MakingCharge[] = [
+  { id: '1', name: 'TURKISH', above: 4.5, below: 3.8 },
+  { id: '2', name: 'SAUDI', above: 4.8, below: 4 },
+  { id: '3', name: 'SINGAPORE', above: 3.5, below: 3 },
+  { id: '4', name: 'OMANI', above: 3.5, below: 3 },
+  { id: '5', name: 'EMIRATI', above: 3.8, below: 2.8 },
+  { id: '6', name: 'INDIAN', above: 4, below: 3.5 },
+  { id: '7', name: 'BAHRAINI', above: 4, below: 3.5 },
+  { id: '8', name: 'KHWATI', above: 4, below: 3.5 },
+];
 
 const DEFAULT_ADMIN_SETTINGS: AdminSettings = {
+  // API Settings
+  demoMode: false,
+  apiKey: '',
+  refreshInterval: 3600,
+  
+  // Prices Settings
   manualOverride: false,
   enablePremiums: true,
   usdOverride: 2500,
@@ -13,6 +30,14 @@ const DEFAULT_ADMIN_SETTINGS: AdminSettings = {
   premium22k: 1.6,
   premium21k: 1.2,
   premium18k: 1.2,
+  
+  // Charges Settings
+  showMakingCharges: true,
+  makingCharges: DEFAULT_MAKING_CHARGES,
+  
+  // Security Settings
+  theme: 'dark',
+  adminPin: '1234',
 };
 
 const STORAGE_KEY = 'oman_gold_admin_settings';
@@ -22,7 +47,12 @@ export function useGoldPrices() {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
-        return { ...DEFAULT_ADMIN_SETTINGS, ...JSON.parse(stored) };
+        const parsed = JSON.parse(stored);
+        return { 
+          ...DEFAULT_ADMIN_SETTINGS, 
+          ...parsed,
+          makingCharges: parsed.makingCharges || DEFAULT_MAKING_CHARGES 
+        };
       }
     } catch (e) {
       console.error('Failed to load admin settings:', e);
@@ -45,6 +75,7 @@ export function useGoldPrices() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [apiTestResult, setApiTestResult] = useState<'success' | 'error' | null>(null);
 
   // Save admin settings to localStorage
   useEffect(() => {
@@ -55,9 +86,27 @@ export function useGoldPrices() {
     }
   }, [adminSettings]);
 
+  // Test API connection
+  const testApiConnection = useCallback(async (): Promise<boolean> => {
+    if (!adminSettings.apiKey) {
+      setApiTestResult('error');
+      return false;
+    }
+    
+    try {
+      // Simulate API test - in production, make actual API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setApiTestResult('success');
+      return true;
+    } catch (e) {
+      setApiTestResult('error');
+      return false;
+    }
+  }, [adminSettings.apiKey]);
+
   // Fetch USD per ounce from API
   const fetchUsdPerOunce = useCallback(async (): Promise<number> => {
-    if (adminSettings.manualOverride) {
+    if (adminSettings.manualOverride || adminSettings.demoMode) {
       return adminSettings.usdOverride;
     }
 
@@ -71,7 +120,7 @@ export function useGoldPrices() {
       console.error('Failed to fetch USD per ounce:', e);
       throw e;
     }
-  }, [adminSettings.manualOverride, adminSettings.usdOverride]);
+  }, [adminSettings.manualOverride, adminSettings.demoMode, adminSettings.usdOverride]);
 
   // Calculate 10 Tola prices
   const calculate10Tola = useCallback((usdPerOunce: number): { withPremium: number; withoutPremium: number } => {
@@ -157,9 +206,10 @@ export function useGoldPrices() {
   // Initial load and auto-refresh
   useEffect(() => {
     updatePrices();
-    const interval = setInterval(updatePrices, 5000); // Refresh every 5 seconds
+    const refreshMs = Math.max(adminSettings.refreshInterval * 1000, 5000); // Minimum 5 seconds
+    const interval = setInterval(updatePrices, adminSettings.demoMode ? 5000 : refreshMs);
     return () => clearInterval(interval);
-  }, [updatePrices]);
+  }, [updatePrices, adminSettings.refreshInterval, adminSettings.demoMode]);
 
   const trend = calculateTrend(priceData.previousUsdPerOunce, priceData.usdPerOunce);
 
@@ -171,5 +221,7 @@ export function useGoldPrices() {
     isLoading,
     error,
     refreshPrices: updatePrices,
+    testApiConnection,
+    apiTestResult,
   };
 }
