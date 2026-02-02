@@ -37,7 +37,7 @@ const DEFAULT_ADMIN_SETTINGS: AdminSettings = {
   
   // Security Settings
   theme: 'dark',
-  adminPin: '1234',
+  adminPin: '8472',
 };
 
 const STORAGE_KEY = 'oman_gold_admin_settings';
