@@ -4,18 +4,14 @@ import { TolaCard } from '@/components/TolaCard';
 import { GinniCard } from '@/components/GinniCard';
 import { LiveMarketRates } from '@/components/LiveMarketRates';
 import { MakingCharges } from '@/components/MakingCharges';
-import { AdminPanel } from '@/components/AdminPanel';
-import { useGoldPrices } from '@/hooks/useGoldPrices';
+import { useGoldPricesContext } from '@/contexts/GoldPricesContext';
 
 const Index = () => {
   const { 
     priceData, 
     adminSettings, 
-    setAdminSettings, 
     trend,
-    testApiConnection,
-    apiTestResult,
-  } = useGoldPrices();
+  } = useGoldPricesContext();
 
   const karatRates = [
     { karat: '24 Karat', price: priceData.perGram24k },
@@ -69,14 +65,6 @@ const Index = () => {
         <MakingCharges 
           charges={adminSettings.makingCharges}
           show={adminSettings.showMakingCharges}
-        />
-
-        {/* Admin Panel */}
-        <AdminPanel 
-          settings={adminSettings}
-          onSettingsChange={setAdminSettings}
-          onTestApi={testApiConnection}
-          apiTestResult={apiTestResult}
         />
       </main>
     </div>
