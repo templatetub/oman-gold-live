@@ -1,12 +1,27 @@
 import { useClock } from '@/hooks/useClock';
-import { RefreshCw, Sun, Globe } from 'lucide-react';
+import { RefreshCw, Sun, Globe, Settings, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-export function Header() {
+interface HeaderProps {
+  showBackButton?: boolean;
+}
+
+export function Header({ showBackButton = false }: HeaderProps) {
   const { formattedTime, formattedDate } = useClock();
 
   return (
     <header className="flex items-center justify-between py-4 px-6 border-b border-border">
-      <div className="flex-1" />
+      <div className="flex-1 flex items-center">
+        {showBackButton ? (
+          <Link 
+            to="/" 
+            className="flex items-center gap-2 px-3 py-1.5 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span className="text-sm">Back to Dashboard</span>
+          </Link>
+        ) : null}
+      </div>
       
       <div className="text-center font-mono">
         <span className="text-lg text-foreground tracking-wider">
@@ -28,6 +43,15 @@ export function Header() {
           <Globe className="w-4 h-4" />
           <span className="text-sm">AR</span>
         </button>
+
+        {!showBackButton && (
+          <Link 
+            to="/admin" 
+            className="p-2 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Settings className="w-5 h-5" />
+          </Link>
+        )}
       </div>
     </header>
   );
