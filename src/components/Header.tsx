@@ -1,6 +1,7 @@
 import { useClock } from '@/hooks/useClock';
 import { RefreshCw, Sun, Globe, Settings, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 interface HeaderProps {
   showBackButton?: boolean;
@@ -8,6 +9,21 @@ interface HeaderProps {
 
 export function Header({ showBackButton = false }: HeaderProps) {
   const { formattedTime, formattedDate } = useClock();
+  const [language, setLanguage] = useState<'EN' | 'AR'>(() => {
+    const stored = localStorage.getItem('oman_gold_language');
+    return (stored === 'AR' ? 'AR' : 'EN') as 'EN' | 'AR';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('oman_gold_language', language);
+    // Apply RTL direction for Arabic
+    document.documentElement.dir = language === 'AR' ? 'rtl' : 'ltr';
+    document.documentElement.lang = language === 'AR' ? 'ar' : 'en';
+  }, [language]);
+
+  const toggleLanguage = () => {
+    setLanguage(prev => prev === 'EN' ? 'AR' : 'EN');
+  };
 
   return (
     <header className="flex items-center justify-between py-4 px-6 border-b border-border">
@@ -18,7 +34,7 @@ export function Header({ showBackButton = false }: HeaderProps) {
             className="flex items-center gap-2 px-3 py-1.5 text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span className="text-sm">Back to Dashboard</span>
+            <span className="text-sm">{language === 'AR' ? 'العودة إلى لوحة التحكم' : 'Back to Dashboard'}</span>
           </Link>
         ) : null}
       </div>
@@ -39,9 +55,12 @@ export function Header({ showBackButton = false }: HeaderProps) {
           <Sun className="w-5 h-5" />
         </button>
         
-        <button className="flex items-center gap-2 px-3 py-1.5 text-muted-foreground hover:text-foreground transition-colors">
+        <button 
+          onClick={toggleLanguage}
+          className="flex items-center gap-2 px-3 py-1.5 text-muted-foreground hover:text-foreground transition-colors"
+        >
           <Globe className="w-4 h-4" />
-          <span className="text-sm">AR</span>
+          <span className="text-sm">{language}</span>
         </button>
 
         {!showBackButton && (
