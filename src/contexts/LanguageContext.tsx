@@ -27,6 +27,14 @@ interface Translations {
   
   // Making Charges
   makingChargeTitle: string;
+  chargeTurkish: string;
+  chargeSaudi: string;
+  chargeSingapore: string;
+  chargeOmani: string;
+  chargeEmirati: string;
+  chargeIndian: string;
+  chargeBahraini: string;
+  chargeKhwati: string;
 }
 
 const translations: Record<Language, Translations> = {
@@ -44,6 +52,14 @@ const translations: Record<Language, Translations> = {
     karat21: '21 Karat',
     karat18: '18 Karat',
     makingChargeTitle: 'MAKING CHARGE STARTING ------> LESS THEN 2.00 GRM MAKING PER PIECE',
+    chargeTurkish: 'TURKISH',
+    chargeSaudi: 'SAUDI',
+    chargeSingapore: 'SINGAPORE',
+    chargeOmani: 'OMANI',
+    chargeEmirati: 'EMIRATI',
+    chargeIndian: 'INDIAN',
+    chargeBahraini: 'BAHRAINI',
+    chargeKhwati: 'KHWATI',
   },
   AR: {
     backToDashboard: 'العودة إلى لوحة التحكم',
@@ -59,6 +75,14 @@ const translations: Record<Language, Translations> = {
     karat21: '21 قيراط',
     karat18: '18 قيراط',
     makingChargeTitle: 'رسوم التصنيع تبدأ ------> أقل من 2.00 جرام لكل قطعة',
+    chargeTurkish: 'تركي',
+    chargeSaudi: 'سعودي',
+    chargeSingapore: 'سنغافوري',
+    chargeOmani: 'عماني',
+    chargeEmirati: 'إماراتي',
+    chargeIndian: 'هندي',
+    chargeBahraini: 'بحريني',
+    chargeKhwati: 'كويتي',
   },
 };
 

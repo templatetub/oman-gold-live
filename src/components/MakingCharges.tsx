@@ -11,6 +11,21 @@ export function MakingCharges({ charges, show }: MakingChargesProps) {
   
   if (!show) return null;
 
+  // Map charge names to translations
+  const getChargeName = (name: string) => {
+    const nameMap: Record<string, string> = {
+      'TURKISH': t.chargeTurkish,
+      'SAUDI': t.chargeSaudi,
+      'SINGAPORE': t.chargeSingapore,
+      'OMANI': t.chargeOmani,
+      'EMIRATI': t.chargeEmirati,
+      'INDIAN': t.chargeIndian,
+      'BAHRAINI': t.chargeBahraini,
+      'KHWATI': t.chargeKhwati,
+    };
+    return nameMap[name] || name;
+  };
+
   return (
     <div className="mt-6">
       <div className="text-center text-muted-foreground text-sm tracking-wider mb-4">
@@ -21,7 +36,7 @@ export function MakingCharges({ charges, show }: MakingChargesProps) {
         {charges.map((charge) => (
           <div key={charge.id} className="making-charge-card">
             <div className="text-muted-foreground text-xs font-medium mb-1 uppercase">
-              {charge.name}
+              {getChargeName(charge.name)}
             </div>
             <div className="font-mono text-lg text-foreground">
               <span className="gold-text">{charge.above}</span>
