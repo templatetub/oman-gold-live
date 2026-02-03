@@ -1,7 +1,7 @@
 import { useClock } from '@/hooks/useClock';
 import { RefreshCw, Sun, Globe, Settings, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface HeaderProps {
   showBackButton?: boolean;
@@ -9,20 +9,10 @@ interface HeaderProps {
 
 export function Header({ showBackButton = false }: HeaderProps) {
   const { formattedTime, formattedDate } = useClock();
-  const [language, setLanguage] = useState<'EN' | 'AR'>(() => {
-    const stored = localStorage.getItem('oman_gold_language');
-    return (stored === 'AR' ? 'AR' : 'EN') as 'EN' | 'AR';
-  });
-
-  useEffect(() => {
-    localStorage.setItem('oman_gold_language', language);
-    // Apply RTL direction for Arabic
-    document.documentElement.dir = language === 'AR' ? 'rtl' : 'ltr';
-    document.documentElement.lang = language === 'AR' ? 'ar' : 'en';
-  }, [language]);
+  const { language, setLanguage, t } = useLanguage();
 
   const toggleLanguage = () => {
-    setLanguage(prev => prev === 'EN' ? 'AR' : 'EN');
+    setLanguage(language === 'EN' ? 'AR' : 'EN');
   };
 
   return (
@@ -34,7 +24,7 @@ export function Header({ showBackButton = false }: HeaderProps) {
             className="flex items-center gap-2 px-3 py-1.5 text-muted-foreground hover:text-foreground transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
-            <span className="text-sm">{language === 'AR' ? 'العودة إلى لوحة التحكم' : 'Back to Dashboard'}</span>
+            <span className="text-sm">{t.backToDashboard}</span>
           </Link>
         ) : null}
       </div>

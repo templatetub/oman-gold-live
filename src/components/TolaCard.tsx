@@ -1,9 +1,13 @@
+import { useLanguage } from '@/contexts/LanguageContext';
+
 interface TolaCardProps {
   price: number;
   symbol: string;
 }
 
 export function TolaCard({ price, symbol }: TolaCardProps) {
+  const { t } = useLanguage();
+  
   return (
     <div className="gold-card">
       <div className="flex items-center justify-between mb-2">
@@ -18,7 +22,7 @@ export function TolaCard({ price, symbol }: TolaCardProps) {
       </div>
       
       <div className="flex items-center">
-        <span className="text-xs text-muted-foreground bg-secondary px-2 py-0.5 rounded">10 Tola.</span>
+        <span className="text-xs text-muted-foreground bg-secondary px-2 py-0.5 rounded">{t.tola10}</span>
       </div>
     </div>
   );

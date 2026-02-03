@@ -1,4 +1,5 @@
 import { MakingCharge } from '@/types/goldRate';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface MakingChargesProps {
   charges: MakingCharge[];
@@ -6,12 +7,14 @@ interface MakingChargesProps {
 }
 
 export function MakingCharges({ charges, show }: MakingChargesProps) {
+  const { t } = useLanguage();
+  
   if (!show) return null;
 
   return (
     <div className="mt-6">
       <div className="text-center text-muted-foreground text-sm tracking-wider mb-4">
-        MAKING CHARGE STARTING ------{'>'} LESS THEN 2.00 GRM MAKING PER PIECE
+        {t.makingChargeTitle}
       </div>
       
       <div className="grid grid-cols-4 gap-3">

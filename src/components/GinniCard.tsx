@@ -1,4 +1,5 @@
 import { useClock } from '@/hooks/useClock';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface GinniCardProps {
   price: number;
@@ -8,12 +9,13 @@ interface GinniCardProps {
 
 export function GinniCard({ price, symbol, lastUpdate }: GinniCardProps) {
   const { formatUpdateTime } = useClock();
+  const { t } = useLanguage();
 
   return (
     <div className="ginni-card">
       <div className="text-center">
         <div className="text-muted-foreground text-sm font-medium mb-2">
-          GINNI (21K)
+          {t.ginni21k}
         </div>
         
         <div className="price-display-large gold-text mb-3">
@@ -25,8 +27,8 @@ export function GinniCard({ price, symbol, lastUpdate }: GinniCardProps) {
         </div>
         
         <div className="text-xs text-muted-foreground">
-          Last Update On {formatUpdateTime(lastUpdate)}{' '}
-          <span className="live-badge ml-2">LIVE</span>
+          {t.lastUpdateOn} {formatUpdateTime(lastUpdate)}{' '}
+          <span className="live-badge ml-2">{t.live}</span>
         </div>
       </div>
     </div>
