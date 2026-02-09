@@ -35,10 +35,10 @@ export function MakingCharges({ charges, show }: MakingChargesProps) {
       <div className="grid grid-cols-4 gap-3">
         {charges.map((charge) => (
           <div key={charge.id} className="making-charge-card">
-            <div className="text-muted-foreground text-xs font-medium mb-1 uppercase">
+            <div className="text-muted-foreground text-sm font-medium mb-2 uppercase">
               {getChargeName(charge.name)}
             </div>
-            <div className="font-mono text-lg text-foreground">
+            <div className="font-mono text-xl text-foreground">
               <span className="gold-text">{charge.above}</span>
               <span className="text-muted-foreground"> - </span>
               <span className="text-foreground">{charge.below}</span>

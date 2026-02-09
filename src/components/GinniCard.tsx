@@ -14,11 +14,11 @@ export function GinniCard({ price, symbol, lastUpdate }: GinniCardProps) {
   return (
     <div className="ginni-card">
       <div className="text-center">
-        <div className="text-muted-foreground text-sm font-medium mb-2">
+        <div className="text-muted-foreground text-base font-medium mb-2">
           {t.ginni21k}
         </div>
         
-        <div className="price-display-large gold-text mb-3">
+        <div className="font-mono text-5xl font-bold gold-text mb-3">
           {price}
         </div>
         
