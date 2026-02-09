@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useClock } from '@/hooks/useClock';
-import { RefreshCw, Sun, Globe, Settings, ArrowLeft } from 'lucide-react';
+import { RefreshCw, Sun, Moon, Globe, Settings, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -24,7 +24,16 @@ export function Header({
 
   const [autoSwitch, setAutoSwitch] = useState(false);
   const [countdown, setCountdown] = useState(AUTO_SWITCH_SECONDS);
+  const [isDark, setIsDark] = useState(() => {
+    const stored = localStorage.getItem('oman_gold_theme');
+    return stored ? stored === 'dark' : true;
+  });
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDark);
+    localStorage.setItem('oman_gold_theme', isDark ? 'dark' : 'light');
+  }, [isDark]);
 
   const toggleLanguage = useCallback(() => {
     setLanguage(language === 'EN' ? 'AR' : 'EN');
@@ -82,8 +91,11 @@ export function Header({
           <span>{countdown}</span>
         </button>
         
-        <button className="p-2 text-muted-foreground hover:text-foreground transition-colors">
-          <Sun className="w-5 h-5" />
+        <button 
+          onClick={() => setIsDark(prev => !prev)}
+          className="p-2 text-muted-foreground hover:text-foreground transition-colors"
+        >
+          {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
         </button>
         
         <button onClick={toggleLanguage} className="flex items-center gap-2 px-3 py-1.5 text-muted-foreground hover:text-foreground transition-colors text-base font-bold border-primary border-solid shadow-sm text-center">
