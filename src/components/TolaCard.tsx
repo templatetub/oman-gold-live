@@ -9,20 +9,20 @@ export function TolaCard({ price, symbol }: TolaCardProps) {
   const { t } = useLanguage();
   
   return (
-    <div className="gold-card">
-      <div className="flex items-center justify-between mb-2">
-        <span className="text-muted-foreground text-sm font-medium">{symbol}</span>
+    <div className="gold-card text-center">
+      <div className="mb-2">
+        <span className="text-muted-foreground text-base font-medium">{symbol}</span>
       </div>
       
-      <div className="price-display text-foreground mb-2">
+      <div className="font-mono text-4xl font-bold text-foreground mb-3">
         {price.toLocaleString('en-US', { 
           minimumFractionDigits: 2, 
           maximumFractionDigits: 2 
         })}
       </div>
       
-      <div className="flex items-center">
-        <span className="text-xs text-muted-foreground bg-secondary px-2 py-0.5 rounded">{t.tola10}</span>
+      <div className="flex items-center justify-center">
+        <span className="text-sm text-muted-foreground bg-secondary px-2 py-0.5 rounded">{t.tola10}</span>
       </div>
     </div>
   );
