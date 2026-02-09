@@ -4,6 +4,53 @@
 
 @layer base {
   :root {
+    /* Light Theme */
+    --background: 40 20% 96%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --card-border: 40 20% 85%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 40 96% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 40 15% 90%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 40 15% 90%;
+    --muted-foreground: 222 20% 45%;
+
+    --accent: 40 96% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 210 40% 98%;
+
+    --border: 40 20% 85%;
+    --input: 40 15% 90%;
+    --ring: 40 96% 45%;
+
+    --radius: 0.5rem;
+
+    /* Custom Gold Theme Colors */
+    --gold: 40 96% 45%;
+    --gold-dim: 40 60% 35%;
+    --navy-dark: 40 20% 96%;
+    --navy-card: 0 0% 100%;
+    --navy-lighter: 40 20% 85%;
+    --live-green: 142 76% 36%;
+    --trend-up: 142 76% 36%;
+    --trend-down: 0 72% 51%;
+  }
+
+  .dark {
     /* Oman Gold Rate Design System - Dark Finance Theme */
     --background: 222 47% 6%;
     --foreground: 210 40% 98%;
@@ -37,9 +84,6 @@
     --input: 222 30% 12%;
     --ring: 40 96% 55%;
 
-    --radius: 0.5rem;
-
-    /* Custom Gold Theme Colors */
     --gold: 40 96% 55%;
     --gold-dim: 40 60% 40%;
     --navy-dark: 222 47% 6%;
@@ -48,31 +92,6 @@
     --live-green: 142 76% 36%;
     --trend-up: 142 76% 36%;
     --trend-down: 0 72% 51%;
-  }
-
-  .dark {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 98%;
-    --card-border: 222 30% 15%;
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 40 96% 55%;
-    --primary-foreground: 222 47% 6%;
-    --secondary: 222 30% 12%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 222 30% 15%;
-    --muted-foreground: 215 20% 55%;
-    --accent: 40 96% 55%;
-    --accent-foreground: 222 47% 6%;
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 210 40% 98%;
-    --success: 142 76% 36%;
-    --success-foreground: 210 40% 98%;
-    --border: 222 30% 15%;
-    --input: 222 30% 12%;
-    --ring: 40 96% 55%;
   }
 }
 
