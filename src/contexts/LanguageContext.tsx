@@ -114,8 +114,20 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     document.documentElement.lang = language === 'AR' ? 'ar' : 'en';
   }, [language]);
 
+  const formatNumber = (num: number, options?: { minimumFractionDigits?: number; maximumFractionDigits?: number }) => {
+    const formatted = num.toLocaleString('en-US', {
+      minimumFractionDigits: options?.minimumFractionDigits ?? 2,
+      maximumFractionDigits: options?.maximumFractionDigits ?? 2,
+    });
+    return language === 'AR' ? toArabicNumerals(formatted) : formatted;
+  };
+
+  const localizeText = (text: string) => {
+    return language === 'AR' ? toArabicNumerals(text) : text;
+  };
+
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t: translations[language] }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t: translations[language], formatNumber, localizeText }}>
       {children}
     </LanguageContext.Provider>
   );
