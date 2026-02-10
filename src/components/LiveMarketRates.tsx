@@ -11,7 +11,7 @@ interface LiveMarketRatesProps {
 }
 
 export function LiveMarketRates({ rates, symbol }: LiveMarketRatesProps) {
-  const { t, formatNumber } = useLanguage();
+  const { t, formatNumber, translateSymbol } = useLanguage();
   
   const getKaratLabel = (karat: string) => {
     if (karat.includes('24')) return t.karat24;
