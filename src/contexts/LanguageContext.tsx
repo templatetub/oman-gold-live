@@ -49,6 +49,7 @@ const translations: Record<Language, Translations> = {
     ginni21k: 'GINNI (21K)',
     lastUpdateOn: 'Last Update On',
     live: 'LIVE',
+    currencySymbols: { 'OMR': 'OMR' },
     liveMarketRates: 'Live Market Rates',
     karat24: '24 Karat',
     karat22: '22 Karat',
