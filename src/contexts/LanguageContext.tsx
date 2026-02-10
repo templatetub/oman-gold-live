@@ -132,8 +132,15 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     return language === 'AR' ? toArabicNumerals(text) : text;
   };
 
+  const translateSymbol = (symbol: string) => {
+    return translations[language].currencySymbols[symbol] || symbol;
+  };
+
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t: translations[language], formatNumber, localizeText }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t: translations[language], formatNumber, localizeText, translateSymbol }}>
+      {children}
+    </LanguageContext.Provider>
+  );
       {children}
     </LanguageContext.Provider>
   );
