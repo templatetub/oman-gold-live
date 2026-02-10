@@ -103,9 +103,6 @@ export function Header({
           <span className="text-sm">{language}</span>
         </button>
 
-        {!showBackButton && <Link to="/admin" className="p-2 text-muted-foreground hover:text-foreground transition-colors">
-            <Settings className="w-5 h-5" />
-          </Link>}
       </div>
     </header>;
 }
