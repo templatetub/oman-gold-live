@@ -103,6 +103,7 @@ interface LanguageContextType {
   t: Translations;
   formatNumber: (num: number, options?: { minimumFractionDigits?: number; maximumFractionDigits?: number }) => string;
   localizeText: (text: string) => string;
+  translateSymbol: (symbol: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | null>(null);
