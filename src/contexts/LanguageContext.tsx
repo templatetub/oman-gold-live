@@ -18,6 +18,9 @@ interface Translations {
   lastUpdateOn: string;
   live: string;
   
+  // Currency symbols
+  currencySymbols: Record<string, string>;
+  
   // Live Market Rates
   liveMarketRates: string;
   karat24: string;
