@@ -6,7 +6,7 @@ interface TolaCardProps {
 }
 
 export function TolaCard({ price, symbol }: TolaCardProps) {
-  const { t } = useLanguage();
+  const { t, formatNumber } = useLanguage();
   
   return (
     <div className="gold-card text-center">
@@ -15,10 +15,7 @@ export function TolaCard({ price, symbol }: TolaCardProps) {
       </div>
       
       <div className="font-mono text-4xl font-bold text-foreground mb-3">
-        {price.toLocaleString('en-US', { 
-          minimumFractionDigits: 2, 
-          maximumFractionDigits: 2 
-        })}
+        {formatNumber(price)}
       </div>
       
       <div className="flex items-center justify-center">

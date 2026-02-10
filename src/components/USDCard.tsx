@@ -8,7 +8,7 @@ interface USDCardProps {
 }
 
 export function USDCard({ usdPerOunce, trend }: USDCardProps) {
-  const { t } = useLanguage();
+  const { t, formatNumber } = useLanguage();
   
   return (
     <div className="gold-card text-center">
@@ -17,10 +17,7 @@ export function USDCard({ usdPerOunce, trend }: USDCardProps) {
       </div>
       
       <div className="font-mono text-4xl font-bold gold-text mb-3">
-        {usdPerOunce.toLocaleString('en-US', { 
-          minimumFractionDigits: 2, 
-          maximumFractionDigits: 2 
-        })}
+        {formatNumber(usdPerOunce)}
       </div>
       
       <div className="flex items-center justify-center gap-2">

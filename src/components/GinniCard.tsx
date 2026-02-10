@@ -9,7 +9,7 @@ interface GinniCardProps {
 
 export function GinniCard({ price, symbol, lastUpdate }: GinniCardProps) {
   const { formatUpdateTime } = useClock();
-  const { t } = useLanguage();
+  const { t, formatNumber, localizeText } = useLanguage();
 
   return (
     <div className="ginni-card">
@@ -19,7 +19,7 @@ export function GinniCard({ price, symbol, lastUpdate }: GinniCardProps) {
         </div>
         
         <div className="font-mono text-5xl font-bold gold-text mb-3">
-          {price}
+          {formatNumber(price, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
         </div>
         
         <div className="inline-block gold-badge mb-4">
@@ -27,7 +27,7 @@ export function GinniCard({ price, symbol, lastUpdate }: GinniCardProps) {
         </div>
         
         <div className="text-xs text-muted-foreground">
-          {t.lastUpdateOn} {formatUpdateTime(lastUpdate)}{' '}
+          {t.lastUpdateOn} {localizeText(formatUpdateTime(lastUpdate))}{' '}
           <span className="live-badge ml-2">{t.live}</span>
         </div>
       </div>

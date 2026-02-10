@@ -7,11 +7,10 @@ interface MakingChargesProps {
 }
 
 export function MakingCharges({ charges, show }: MakingChargesProps) {
-  const { t } = useLanguage();
+  const { t, localizeText } = useLanguage();
   
   if (!show) return null;
 
-  // Map charge names to translations
   const getChargeName = (name: string) => {
     const nameMap: Record<string, string> = {
       'TURKISH': t.chargeTurkish,
@@ -39,9 +38,9 @@ export function MakingCharges({ charges, show }: MakingChargesProps) {
               {getChargeName(charge.name)}
             </div>
             <div className="font-mono text-2xl text-foreground">
-              <span className="gold-text">{charge.above}</span>
+              <span className="gold-text">{localizeText(String(charge.above))}</span>
               <span className="text-muted-foreground"> - </span>
-              <span className="text-foreground">{charge.below}</span>
+              <span className="text-foreground">{localizeText(String(charge.below))}</span>
             </div>
           </div>
         ))}

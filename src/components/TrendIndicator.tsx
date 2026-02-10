@@ -1,5 +1,6 @@
 import { TrendingUp, TrendingDown } from 'lucide-react';
 import { TrendData } from '@/types/goldRate';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface TrendIndicatorProps {
   trend: TrendData;
@@ -8,6 +9,8 @@ interface TrendIndicatorProps {
 }
 
 export function TrendIndicator({ trend, showPercentage = true, size = 'sm' }: TrendIndicatorProps) {
+  const { localizeText } = useLanguage();
+  
   if (trend.direction === 'neutral') {
     return null;
   }
@@ -25,7 +28,7 @@ export function TrendIndicator({ trend, showPercentage = true, size = 'sm' }: Tr
       )}
       {showPercentage && (
         <span className={`${textSize} font-medium`}>
-          {isUp ? '+' : '-'}{trend.percentage.toFixed(2)}%
+          {isUp ? '+' : '-'}{localizeText(trend.percentage.toFixed(2))}%
         </span>
       )}
     </div>
