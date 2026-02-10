@@ -73,6 +73,7 @@ const translations: Record<Language, Translations> = {
     ginni21k: 'الجني (21 ع)',
     lastUpdateOn: 'آخر تحديث في',
     live: 'مباشر',
+    currencySymbols: { 'OMR': 'ريال عماني' },
     liveMarketRates: 'أسعار السوق المباشرة',
     karat24: '24 ع',
     karat22: '22 ع',
