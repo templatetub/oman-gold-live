@@ -86,10 +86,18 @@ const translations: Record<Language, Translations> = {
   },
 };
 
+// Convert Western numerals to Arabic-Hindi numerals
+function toArabicNumerals(str: string): string {
+  const arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+  return str.replace(/[0-9]/g, (d) => arabicDigits[parseInt(d)]);
+}
+
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
   t: Translations;
+  formatNumber: (num: number, options?: { minimumFractionDigits?: number; maximumFractionDigits?: number }) => string;
+  localizeText: (text: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | null>(null);
