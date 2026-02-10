@@ -141,9 +141,6 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       {children}
     </LanguageContext.Provider>
   );
-      {children}
-    </LanguageContext.Provider>
-  );
 }
 
 export function useLanguage() {
