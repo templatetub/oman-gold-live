@@ -18,6 +18,9 @@ interface Translations {
   lastUpdateOn: string;
   live: string;
   
+  // Currency symbols
+  currencySymbols: Record<string, string>;
+  
   // Live Market Rates
   liveMarketRates: string;
   karat24: string;
@@ -46,6 +49,7 @@ const translations: Record<Language, Translations> = {
     ginni21k: 'GINNI (21K)',
     lastUpdateOn: 'Last Update On',
     live: 'LIVE',
+    currencySymbols: { 'OMR': 'OMR' },
     liveMarketRates: 'Live Market Rates',
     karat24: '24 Karat',
     karat22: '22 Karat',
@@ -69,6 +73,7 @@ const translations: Record<Language, Translations> = {
     ginni21k: 'الجني (21 ع)',
     lastUpdateOn: 'آخر تحديث في',
     live: 'مباشر',
+    currencySymbols: { 'OMR': 'ريال عماني' },
     liveMarketRates: 'أسعار السوق المباشرة',
     karat24: '24 ع',
     karat22: '22 ع',
@@ -98,6 +103,7 @@ interface LanguageContextType {
   t: Translations;
   formatNumber: (num: number, options?: { minimumFractionDigits?: number; maximumFractionDigits?: number }) => string;
   localizeText: (text: string) => string;
+  translateSymbol: (symbol: string) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | null>(null);
@@ -126,8 +132,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     return language === 'AR' ? toArabicNumerals(text) : text;
   };
 
+  const translateSymbol = (symbol: string) => {
+    return translations[language].currencySymbols[symbol] || symbol;
+  };
+
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t: translations[language], formatNumber, localizeText }}>
+    <LanguageContext.Provider value={{ language, setLanguage, t: translations[language], formatNumber, localizeText, translateSymbol }}>
       {children}
     </LanguageContext.Provider>
   );
