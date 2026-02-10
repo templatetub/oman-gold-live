@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useClock } from '@/hooks/useClock';
-import { RefreshCw, Sun, Moon, Globe, Settings, ArrowLeft } from 'lucide-react';
+import { RefreshCw, Sun, Moon, Globe, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 
