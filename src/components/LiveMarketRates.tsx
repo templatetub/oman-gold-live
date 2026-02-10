@@ -11,9 +11,8 @@ interface LiveMarketRatesProps {
 }
 
 export function LiveMarketRates({ rates, symbol }: LiveMarketRatesProps) {
-  const { t } = useLanguage();
+  const { t, formatNumber } = useLanguage();
   
-  // Map karat labels to translations
   const getKaratLabel = (karat: string) => {
     if (karat.includes('24')) return t.karat24;
     if (karat.includes('22')) return t.karat22;
@@ -45,7 +44,7 @@ export function LiveMarketRates({ rates, symbol }: LiveMarketRatesProps) {
             </div>
             <div className="flex items-center gap-2">
               <span className="font-mono text-2xl font-bold gold-text">
-                {rate.price.toFixed(2)}
+                {formatNumber(rate.price)}
               </span>
               <span className="text-muted-foreground text-base">{symbol}</span>
             </div>
