@@ -9,7 +9,7 @@ interface GinniCardProps {
 
 export function GinniCard({ price, symbol, lastUpdate }: GinniCardProps) {
   const { formatUpdateTime } = useClock();
-  const { t, formatNumber, localizeText } = useLanguage();
+  const { t, formatNumber, localizeText, translateSymbol } = useLanguage();
 
   return (
     <div className="ginni-card">
@@ -23,7 +23,7 @@ export function GinniCard({ price, symbol, lastUpdate }: GinniCardProps) {
         </div>
         
         <div className="inline-block gold-badge mb-4">
-          {symbol}
+          {translateSymbol(symbol)}
         </div>
         
         <div className="text-xs text-muted-foreground">

@@ -46,7 +46,7 @@ export function LiveMarketRates({ rates, symbol }: LiveMarketRatesProps) {
               <span className="font-mono text-2xl font-bold gold-text">
                 {formatNumber(rate.price)}
               </span>
-              <span className="text-muted-foreground text-base">{symbol}</span>
+              <span className="text-muted-foreground text-base">{translateSymbol(symbol)}</span>
             </div>
           </div>
         ))}

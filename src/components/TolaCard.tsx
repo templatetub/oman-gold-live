@@ -6,12 +6,12 @@ interface TolaCardProps {
 }
 
 export function TolaCard({ price, symbol }: TolaCardProps) {
-  const { t, formatNumber } = useLanguage();
+  const { t, formatNumber, translateSymbol } = useLanguage();
   
   return (
     <div className="gold-card text-center">
       <div className="mb-2">
-        <span className="text-muted-foreground text-base font-medium">{symbol}</span>
+        <span className="text-muted-foreground text-base font-medium">{translateSymbol(symbol)}</span>
       </div>
       
       <div className="font-mono text-4xl font-bold text-foreground mb-3">
