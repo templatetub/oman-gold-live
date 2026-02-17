@@ -12,7 +12,7 @@ interface LiveMarketRatesProps {
 
 export function LiveMarketRates({ rates, symbol }: LiveMarketRatesProps) {
   const { t, formatNumber, translateSymbol } = useLanguage();
-  
+
   const getKaratLabel = (karat: string) => {
     if (karat.includes('24')) return t.karat24;
     if (karat.includes('22')) return t.karat22;
@@ -20,7 +20,7 @@ export function LiveMarketRates({ rates, symbol }: LiveMarketRatesProps) {
     if (karat.includes('18')) return t.karat18;
     return karat;
   };
-  
+
   return (
     <div className="gold-card h-full">
       <div className="flex items-center justify-between mb-4">
@@ -31,15 +31,15 @@ export function LiveMarketRates({ rates, symbol }: LiveMarketRatesProps) {
       </div>
       
       <div className="space-y-0">
-        {rates.map((rate, index) => (
-          <div 
-            key={rate.karat}
-            className={`flex items-center justify-between py-3 ${
-              index !== rates.length - 1 ? 'border-b border-border' : ''
-            }`}
-          >
+        {rates.map((rate, index) =>
+        <div
+          key={rate.karat}
+          className={`flex items-center justify-between py-3 ${
+          index !== rates.length - 1 ? 'border-b border-border' : ''}`
+          }>
+
             <div className="flex items-center gap-2">
-              <span className="text-muted-foreground">▶</span>
+              
               <span className="text-foreground text-lg">{getKaratLabel(rate.karat)}</span>
             </div>
             <div className="flex items-center gap-2">
@@ -49,8 +49,8 @@ export function LiveMarketRates({ rates, symbol }: LiveMarketRatesProps) {
               <span className="text-muted-foreground text-base">{translateSymbol(symbol)}</span>
             </div>
           </div>
-        ))}
+        )}
       </div>
-    </div>
-  );
+    </div>);
+
 }
