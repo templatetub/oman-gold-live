@@ -14,16 +14,16 @@ export function GinniCard({ price, symbol, lastUpdate }: GinniCardProps) {
   return (
     <div className="ginni-card">
       <div className="text-center">
+        <div className="inline-block gold-badge mb-2">
+          {translateSymbol(symbol)}
+        </div>
+        
         <div className="text-muted-foreground text-base font-medium mb-2">
           {t.ginni21k}
         </div>
         
         <div className="font-mono text-5xl font-bold gold-text mb-3">
           {formatNumber(price, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
-        </div>
-        
-        <div className="inline-block gold-badge mb-4">
-          {translateSymbol(symbol)}
         </div>
         
         <div className="text-xs text-muted-foreground">
