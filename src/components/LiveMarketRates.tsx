@@ -40,7 +40,7 @@ export function LiveMarketRates({ rates, symbol }: LiveMarketRatesProps) {
 
             <div className="flex items-center gap-2">
               
-              <span className="text-foreground text-xl">{getKaratLabel(rate.karat)}</span>
+              <span className="text-foreground text-xl font-bold">{getKaratLabel(rate.karat)}</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="font-mono text-3xl font-bold gold-text">
