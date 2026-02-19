@@ -27,17 +27,17 @@ export function MakingCharges({ charges, show }: MakingChargesProps) {
 
   return (
     <div className="mt-6">
-      <div className="text-center text-muted-foreground text-sm tracking-wider mb-4">
+      <div className="text-center text-muted-foreground text-base tracking-wider mb-4">
         {t.makingChargeTitle}
       </div>
       
       <div className="grid grid-cols-4 gap-3">
         {charges.map((charge) => (
           <div key={charge.id} className="making-charge-card">
-            <div className="text-muted-foreground text-base font-medium mb-2 uppercase">
+            <div className="text-muted-foreground text-lg font-medium mb-2 uppercase">
               {getChargeName(charge.name)}
             </div>
-            <div className="font-mono text-2xl text-foreground">
+            <div className="font-mono text-3xl text-foreground">
               <span className="gold-text">{localizeText(String(charge.above))}</span>
               <span className="text-muted-foreground"> - </span>
               <span className="text-foreground">{localizeText(String(charge.below))}</span>

@@ -73,7 +73,7 @@ export function Header({
       </div>
       
       <div className="text-center font-mono">
-        <span className="text-lg text-foreground tracking-wider">
+        <span className="text-xl text-foreground tracking-wider">
           {formattedTime} - {formattedDate}
         </span>
       </div>

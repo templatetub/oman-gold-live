@@ -24,7 +24,7 @@ export function LiveMarketRates({ rates, symbol }: LiveMarketRatesProps) {
   return (
     <div className="gold-card h-full">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-primary font-semibold text-base uppercase tracking-wider">
+        <h3 className="text-primary font-semibold text-lg uppercase tracking-wider">
           {t.liveMarketRates}
         </h3>
         <div className="w-2 h-2 bg-success rounded-full animate-pulse" />
@@ -40,13 +40,13 @@ export function LiveMarketRates({ rates, symbol }: LiveMarketRatesProps) {
 
             <div className="flex items-center gap-2">
               
-              <span className="text-foreground text-lg">{getKaratLabel(rate.karat)}</span>
+              <span className="text-foreground text-xl">{getKaratLabel(rate.karat)}</span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="font-mono text-2xl font-bold gold-text">
+              <span className="font-mono text-3xl font-bold gold-text">
                 {formatNumber(rate.price)}
               </span>
-              <span className="text-muted-foreground text-base">{translateSymbol(symbol)}</span>
+              <span className="text-muted-foreground text-lg">{translateSymbol(symbol)}</span>
             </div>
           </div>
         )}
