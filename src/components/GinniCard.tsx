@@ -23,7 +23,7 @@ export function GinniCard({ price, symbol, lastUpdate }: GinniCardProps) {
             {formatNumber(price, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
           </div>
 
-          <div className="inline-block gold-badge text-[#7588a3] px-[8px] py-[2px] border border-border rounded-md text-xs bg-[#e9e7e2]">
+          <div className="inline-block gold-badge text-[#7588a3] px-[8px] py-[2px] border border-border rounded-md text-xs bg-[#151b28]">
             {translateSymbol(symbol)}
           </div>
         </div>
