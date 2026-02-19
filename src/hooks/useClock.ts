@@ -31,15 +31,15 @@ export function useClock() {
 
   const formatUpdateTime = (date: Date): string => {
     const day = date.getDate();
-    const month = date.getMonth() + 1;
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const month = months[date.getMonth()];
     const year = date.getFullYear();
     const time = date.toLocaleTimeString('en-US', {
       hour: '2-digit',
       minute: '2-digit',
-      second: '2-digit',
-      hour12: false,
-    });
-    return `${month}/${day}/${year} ${time}`;
+      hour12: true,
+    }).toLowerCase();
+    return `${day} ${month} ${year} ${time}`;
   };
 
   return {
