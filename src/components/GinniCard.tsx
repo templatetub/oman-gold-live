@@ -19,7 +19,7 @@ export function GinniCard({ price, symbol, lastUpdate }: GinniCardProps) {
             {t.ginni21k}
           </div>
           
-          <div className="font-mono text-7xl font-bold gold-text mb-3">
+          <div className="font-mono text-8xl font-bold gold-text mb-3">
             {formatNumber(price, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
           </div>
 
