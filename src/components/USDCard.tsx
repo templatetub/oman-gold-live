@@ -16,7 +16,7 @@ export function USDCard({ usdPerOunce, trend }: USDCardProps) {
         {t.usd}
       </div>
       
-      <div className="font-mono text-4xl font-bold gold-text mb-3">
+      <div className="font-mono text-6xl font-bold gold-text mb-3">
         {formatNumber(usdPerOunce)}
       </div>
       

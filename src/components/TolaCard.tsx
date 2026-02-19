@@ -14,7 +14,7 @@ export function TolaCard({ price, symbol }: TolaCardProps) {
         {translateSymbol(symbol)}
       </div>
       
-      <div className="font-mono text-4xl font-bold text-foreground mb-3">
+      <div className="font-mono text-6xl font-bold text-foreground mb-3">
         {formatNumber(price)}
       </div>
       
