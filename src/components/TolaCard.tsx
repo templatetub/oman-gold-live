@@ -10,7 +10,7 @@ export function TolaCard({ price, symbol }: TolaCardProps) {
 
   return (
     <div className="gold-card text-center">
-      <div className="inline-block gold-badge mb-2 text-[#7588a3] px-[8px] py-[2px] border-0 border-solid rounded-md bg-[#151b28]">
+      <div className="inline-block gold-badge mb-2 text-[#7588a3] px-[8px] py-[2px] border-0 border-solid rounded-md bg-[#151b28]/0">
         {translateSymbol(symbol)}
       </div>
       
