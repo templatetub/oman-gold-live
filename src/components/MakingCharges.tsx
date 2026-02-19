@@ -8,7 +8,7 @@ interface MakingChargesProps {
 
 export function MakingCharges({ charges, show }: MakingChargesProps) {
   const { t, localizeText } = useLanguage();
-  
+
   if (!show) return null;
 
   const getChargeName = (name: string) => {
@@ -20,7 +20,7 @@ export function MakingCharges({ charges, show }: MakingChargesProps) {
       'EMIRATI': t.chargeEmirati,
       'INDIAN': t.chargeIndian,
       'BAHRAINI': t.chargeBahraini,
-      'KHWATI': t.chargeKhwati,
+      'KHWATI': t.chargeKhwati
     };
     return nameMap[name] || name;
   };
@@ -32,19 +32,19 @@ export function MakingCharges({ charges, show }: MakingChargesProps) {
       </div>
       
       <div className="grid grid-cols-4 gap-3">
-        {charges.map((charge) => (
-          <div key={charge.id} className="making-charge-card">
+        {charges.map((charge) =>
+        <div key={charge.id} className="making-charge-card">
             <div className="text-muted-foreground text-lg font-medium mb-2 uppercase">
               {getChargeName(charge.name)}
             </div>
             <div className="font-mono text-3xl text-foreground">
-              <span className="gold-text">{localizeText(String(charge.above))}</span>
+              <span className="gold-text font-bold">{localizeText(String(charge.above))}</span>
               <span className="text-muted-foreground"> - </span>
-              <span className="text-foreground">{localizeText(String(charge.below))}</span>
+              <span className="text-foreground font-bold">{localizeText(String(charge.below))}</span>
             </div>
           </div>
-        ))}
+        )}
       </div>
-    </div>
-  );
+    </div>);
+
 }
