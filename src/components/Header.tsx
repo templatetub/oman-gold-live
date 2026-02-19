@@ -50,7 +50,7 @@ export function Header({
 
     setCountdown(AUTO_SWITCH_SECONDS);
     intervalRef.current = setInterval(() => {
-      setCountdown(prev => {
+      setCountdown((prev) => {
         if (prev <= 1) {
           toggleLanguage();
           return AUTO_SWITCH_SECONDS;
@@ -73,28 +73,28 @@ export function Header({
       </div>
       
       <div className="text-center font-mono">
-        <span className="text-xl text-foreground tracking-wider">
+        <span className="text-xl text-foreground tracking-wider font-bold">
           {formattedTime} - {formattedDate}
         </span>
       </div>
       
       <div className="flex-1 flex items-center justify-end gap-4">
-        <button 
-          onClick={() => setAutoSwitch(prev => !prev)}
-          className={`flex items-center gap-1 px-3 py-1.5 rounded-md text-sm transition-colors ${
-            autoSwitch 
-              ? 'bg-primary text-primary-foreground' 
-              : 'bg-secondary text-muted-foreground hover:text-foreground'
-          }`}
-        >
+        <button
+        onClick={() => setAutoSwitch((prev) => !prev)}
+        className={`flex items-center gap-1 px-3 py-1.5 rounded-md text-sm transition-colors ${
+        autoSwitch ?
+        'bg-primary text-primary-foreground' :
+        'bg-secondary text-muted-foreground hover:text-foreground'}`
+        }>
+
           <RefreshCw className={`w-4 h-4 ${autoSwitch ? 'animate-spin' : ''}`} />
           <span>{countdown}</span>
         </button>
         
-        <button 
-          onClick={() => setIsDark(prev => !prev)}
-          className="p-2 text-muted-foreground hover:text-foreground transition-colors"
-        >
+        <button
+        onClick={() => setIsDark((prev) => !prev)}
+        className="p-2 text-muted-foreground hover:text-foreground transition-colors">
+
           {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
         </button>
         
